@@ -1,0 +1,254 @@
+[
+  {
+    "categories": [
+      {
+        "decimal": "0.70",
+        "digital": "0:42:35",
+        "hours": 0,
+        "minutes": 42,
+        "name": "Coding",
+        "percent": 100,
+        "seconds": 35,
+        "text": "42 mins",
+        "total_seconds": 2555.661
+      }
+    ],
+    "dependencies": [
+      {
+        "decimal": "0.38",
+        "digital": "0:23:32",
+        "hours": 0,
+        "minutes": 23,
+        "name": "cn.zzwtsy",
+        "percent": 50.41,
+        "seconds": 32,
+        "text": "23 mins",
+        "total_seconds": 1412.931
+      },
+      {
+        "decimal": "0.37",
+        "digital": "0:22:50",
+        "hours": 0,
+        "minutes": 22,
+        "name": "org.ktorm",
+        "percent": 48.89,
+        "seconds": 50,
+        "text": "22 mins",
+        "total_seconds": 1370.309
+      },
+      {
+        "decimal": "0.00",
+        "digital": "0:00:19",
+        "hours": 0,
+        "minutes": 0,
+        "name": "com.github",
+        "percent": 0.68,
+        "seconds": 19,
+        "text": "19 secs",
+        "total_seconds": 19.034
+      },
+      {
+        "decimal": "0.00",
+        "digital": "0:00:00",
+        "hours": 0,
+        "minutes": 0,
+        "name": "fasterxml.jackson",
+        "percent": 0.01,
+        "seconds": 0,
+        "text": "0 secs",
+        "total_seconds": 0.155
+      },
+      {
+        "decimal": "0.00",
+        "digital": "0:00:00",
+        "hours": 0,
+        "minutes": 0,
+        "name": "net.mamoe",
+        "percent": 0.01,
+        "seconds": 0,
+        "text": "0 secs",
+        "total_seconds": 0.148
+      },
+      {
+        "decimal": "0.00",
+        "digital": "0:00:00",
+        "hours": 0,
+        "minutes": 0,
+        "name": "kotlinx.serialization",
+        "percent": 0,
+        "seconds": 0,
+        "text": "0 secs",
+        "total_seconds": 0.045
+      }
+    ],
+    "editors": [
+      {
+        "decimal": "0.70",
+        "digital": "0:42:35",
+        "hours": 0,
+        "minutes": 42,
+        "name": "IntelliJ",
+        "percent": 100,
+        "seconds": 35,
+        "text": "42 mins",
+        "total_seconds": 2555.661
+      }
+    ],
+    "grand_total": {
+      "decimal": "0.70",
+      "digital": "0:42",
+      "hours": 0,
+      "minutes": 42,
+      "text": "42 mins",
+      "total_seconds": 2555.661
+    },
+    "languages": [
+      {
+        "decimal": "0.38",
+        "digital": "0:23:47",
+        "hours": 0,
+        "minutes": 23,
+        "name": "Kotlin",
+        "percent": 55.87,
+        "seconds": 47,
+        "text": "23 mins",
+        "total_seconds": 1427.891
+      },
+      {
+        "decimal": "0.12",
+        "digital": "0:07:25",
+        "hours": 0,
+        "minutes": 7,
+        "name": "Gradle",
+        "percent": 17.44,
+        "seconds": 25,
+        "text": "7 mins",
+        "total_seconds": 445.628
+      },
+      {
+        "decimal": "0.05",
+        "digital": "0:03:24",
+        "hours": 0,
+        "minutes": 3,
+        "name": "Properties",
+        "percent": 7.98,
+        "seconds": 24,
+        "text": "3 mins",
+        "total_seconds": 204.011
+      },
+      {
+        "decimal": "0.05",
+        "digital": "0:03:14",
+        "hours": 0,
+        "minutes": 3,
+        "name": "XML",
+        "percent": 7.62,
+        "seconds": 14,
+        "text": "3 mins",
+        "total_seconds": 194.694
+      },
+      {
+        "decimal": "0.03",
+        "digital": "0:02:13",
+        "hours": 0,
+        "minutes": 2,
+        "name": "IDEA_MODULE",
+        "percent": 5.22,
+        "seconds": 13,
+        "text": "2 mins",
+        "total_seconds": 133.502
+      },
+      {
+        "decimal": "0.03",
+        "digital": "0:02:08",
+        "hours": 0,
+        "minutes": 2,
+        "name": "Groovy",
+        "percent": 5.04,
+        "seconds": 8,
+        "text": "2 mins",
+        "total_seconds": 128.839
+      },
+      {
+        "decimal": "0.00",
+        "digital": "0:00:14",
+        "hours": 0,
+        "minutes": 0,
+        "name": "Java",
+        "percent": 0.55,
+        "seconds": 14,
+        "text": "14 secs",
+        "total_seconds": 14.046
+      },
+      {
+        "decimal": "0.00",
+        "digital": "0:00:07",
+        "hours": 0,
+        "minutes": 0,
+        "name": "JavaScript",
+        "percent": 0.28,
+        "seconds": 7,
+        "text": "7 secs",
+        "total_seconds": 7.05
+      }
+    ],
+    "machines": [
+      {
+        "decimal": "0.70",
+        "digital": "0:42:35",
+        "hours": 0,
+        "machine_name_id": "606120b0-73b5-4a52-99e5-2e07edf1b6ad",
+        "minutes": 42,
+        "name": "mengdeMac-Pro.local",
+        "percent": 100,
+        "seconds": 35,
+        "text": "42 mins",
+        "total_seconds": 2555.661
+      }
+    ],
+    "operating_systems": [
+      {
+        "decimal": "0.70",
+        "digital": "0:42:35",
+        "hours": 0,
+        "minutes": 42,
+        "name": "Mac",
+        "percent": 100,
+        "seconds": 35,
+        "text": "42 mins",
+        "total_seconds": 2555.661
+      }
+    ],
+    "projects": [
+      {
+        "decimal": "0.70",
+        "digital": "0:42:16",
+        "hours": 0,
+        "minutes": 42,
+        "name": "pu-campus",
+        "percent": 99.26,
+        "seconds": 16,
+        "text": "42 mins",
+        "total_seconds": 2536.627
+      },
+      {
+        "decimal": "0.00",
+        "digital": "0:00:19",
+        "hours": 0,
+        "minutes": 0,
+        "name": "Genshin-Mirai-Bot",
+        "percent": 0.74,
+        "seconds": 19,
+        "text": "19 secs",
+        "total_seconds": 19.034
+      }
+    ],
+    "range": {
+      "date": "2023-04-04",
+      "end": "2023-04-04T15:59:59Z",
+      "start": "2023-04-03T16:00:00Z",
+      "text": "Tue Apr 4th 2023",
+      "timezone": "Asia/Shanghai"
+    }
+  }
+]
