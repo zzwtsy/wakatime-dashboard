@@ -3,6 +3,7 @@ import DoughnutChartVue from './components/DoughnutChartVue.vue';
 import Api from './ts/api/Api'
 import Parse from './ts/tools/Parse'
 import UpdateData from './ts/echars/UpdateData';
+import Tools from './ts/tools/Tools'
 import { ref } from "vue";
 // 编程语言使用时长饼图配置文件
 const languagePieChartOption = ref()
@@ -13,12 +14,18 @@ const languagePieChartOption = ref()
  */
 const enterSearch = async (event: any) => {
     // 获取 input 里的 gistIds
-    const gistId = event.target.value;
+    let gistId = event.target.value;
 
     // 判断用户输入是否为空或者不够 32 个字符
-    if (gistId == '' || gistId == null || gistId.length != 32) {
+    if (!Tools.checkGistId(gistId)) {
         alert("请输入 Gist Id");
         return;
+    }
+    // TODO: 需要优化代码
+    if (localStorage.getItem('gistId')) {
+        gistId = localStorage.getItem('gistId')
+    } else {
+        localStorage.setItem('gistId', gistId)
     }
 
     // 获取 Gist 中所有符合条件的文件的 raw url
