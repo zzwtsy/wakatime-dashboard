@@ -11,7 +11,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {useDark, useToggle} from "@vueuse/core";
 import VPIconMoon from "./icons/VPIconMoon.vue";
 import VPIconSun from "./icons/VPIconSun.vue";
