@@ -6,7 +6,7 @@ export default class Parse {
      * @param urls URL 数组
      * @returns JSON 数组，其中每个元素包括语言名称和使用时长
      */
-    public static async getPaiData(urls: Array<string>): Promise<Array<{ name: string, value: number }>> {
+    public static async getPieData(urls: Array<string>): Promise<Array<{ name: string, value: number }>> {
         // 发起并行请求，并获取返回结果数组
         const resList: any = await Promise.all(urls.map(url => AxiosUtil.get(url)))
 

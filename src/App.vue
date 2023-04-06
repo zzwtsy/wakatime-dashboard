@@ -25,7 +25,7 @@ const enterSearch = async (event: any) => {
     const urls = await Api.getRawUrl(gistId);
 
     // 获取 Gist 中所有编程语言的使用时长
-    let data = await Parse.getPaiData(urls);
+    let data = await Parse.getPieData(urls);
 
     // 将解析后的数据更新到展示组件
     languagePieChartOption.value = UpdateData.updatePaiData(data)
