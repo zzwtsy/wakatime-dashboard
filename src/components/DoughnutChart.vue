@@ -1,5 +1,5 @@
 <template>
-    <v-chart class="chart" :option="props.data" autoresize/>
+    <v-chart class="chart" :option="props.option" autoresize/>
 </template>
 
 <script setup lang="ts">
@@ -10,9 +10,9 @@ import {PieChart} from 'echarts/charts';
 import {LabelLayout} from 'echarts/features';
 import {CanvasRenderer} from 'echarts/renderers';
 import VChart, {THEME_KEY} from 'vue-echarts';
-import {defineProps, provide} from 'vue';
+import {provide} from 'vue';
 
-const props = defineProps(['data'])
+const props = defineProps(['option'])
 
 echarts.use([
     TitleComponent,
