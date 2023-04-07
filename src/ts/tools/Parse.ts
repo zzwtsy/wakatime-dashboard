@@ -66,6 +66,7 @@ export default class Parse {
         // 定义 X 轴数据
         const xAxisData = [];
 
+        // TODO: 改成Map
         // 定义系列数据
         const seriesData: ChartData[] = [];
 
@@ -122,7 +123,7 @@ export default class Parse {
                 }
             }
         }
-        console.log(seriesData);
+        console.log(">>>", seriesData);
     }
 
 }
