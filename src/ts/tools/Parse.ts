@@ -1,5 +1,23 @@
-import AxiosUtil from '../utils/AxiosUtil'
-import { DataType } from "../enum/DataType";
+import {DataType} from "../enum/DataType";
+
+interface Project {
+    name: string;
+    data: number[];
+}
+
+interface ChartData {
+    name: string;
+    type: "bar";
+    stack: "total";
+    emphasis: { focus: "series" };
+    data: number[];
+}
+
+// name: string,
+// type: "bar",
+// stack: "total",
+// emphasis: {focus: "series"},
+// data: number[]
 
 export default class Parse {
 
@@ -9,7 +27,6 @@ export default class Parse {
      * @returns JSON 数组，其中每个元素包括语言名称和使用时长
      */
     public static async getPieData(resList: any): Promise<Map<DataType, { name: string, value: number }[]>> {
-        
         // 定义 Map 对象来存储不同类型数据的语言名称和总使用时长
         const dataMap = new Map();
 
@@ -27,16 +44,60 @@ export default class Parse {
                 const dataList = res[0][dataType];
 
                 // 遍历当前类型数据的所有语言使用记录
-                for (const { name, total_seconds: seconds } of dataList) {
+                for (const {name, total_seconds: seconds} of dataList) {
                     // 更新或新增 Map 中对应的键值对
                     dataMapItem.set(name, (dataMapItem.get(name) || 0) + seconds);
                 }
             }
 
             // 将 Map 转换为 JSON 数组，并添加到总数据 Map 中
-            dataMap.set(dataType, Array.from(dataMapItem.entries()).map(([name, value]) => ({ name, value })));
+            dataMap.set(dataType, Array.from(dataMapItem.entries()).map(([name, value]) => ({name, value})));
         }
 
         return dataMap;
     }
+
+// {
+//     name: 'Direct',
+//     type: 'bar',
+//     stack: 'total',
+//     emphasis: {
+//         focus: 'series'
+//     },
+//     data: [320, 302, 301, 334, 390, 330, 320]
+// }
+// TODO: 获取堆叠柱状图数据
+    public static getBarData(resList: any) {
+        // 定义 X 轴数据
+        const xAxisData = [];
+
+        // 定义系列数据
+        const seriesData = [];
+
+        for (const res of resList) {
+            const rangeNode = res[0]["range"];
+            xAxisData.push(rangeNode["date"])
+            const projectsNode = res[0][DataType.Projects];
+            if (projectsNode) {
+                for (const project of projectsNode) {
+                    const data: ChartData[] = [];
+                    data.push({
+                        name: project["name"],
+                        type: 'bar',
+                        stack: 'total',
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        data: [project["total_seconds"]]
+                    });
+                    seriesData.push(data);
+                }
+            }
+        }
+    }
+
+// const chartData = this.mergeProjects(dataMapItem);
+// return {date, chartData};
+
+
 }

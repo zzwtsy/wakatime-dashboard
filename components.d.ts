@@ -9,6 +9,17 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    DoughnutChartVue: typeof import('./src/components/DoughnutChart.vue')['default']
+    Body: typeof import('./src/components/Body.vue')['default']
+    ChangeTheme: typeof import('./src/components/ChangeTheme.vue')['default']
+    DoughnutChart: typeof import('./src/components/echarts/DoughnutChart.vue')['default']
+    ElOption: typeof import('element-plus/es')['ElOption']
+    ElSelect: typeof import('element-plus/es')['ElSelect']
+    Footer: typeof import('./src/components/Footer.vue')['default']
+    Header: typeof import('./src/components/Header.vue')['default']
+    IconGithub: typeof import('./src/components/icons/IconGithub.vue')['default']
+    Select: typeof import('./src/components/Select.vue')['default']
+    StackedHorizontalBar: typeof import('./src/components/echarts/StackedHorizontalBar.vue')['default']
+    VPIconMoon: typeof import('./src/components/icons/VPIconMoon.vue')['default']
+    VPIconSun: typeof import('./src/components/icons/VPIconSun.vue')['default']
   }
 }

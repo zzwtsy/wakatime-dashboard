@@ -1,6 +1,8 @@
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import './tailwindcss.css'
-import '@csstools/normalize.css'
+import 'element-plus/theme-chalk/dark/css-vars.css'
+import './styles/dark/css-vars.css'
+import './styles/light/css-vars.css'
 import App from './App.vue'
 
 createApp(App).mount('#app')

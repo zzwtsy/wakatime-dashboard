@@ -5,7 +5,8 @@ enum DataType {
     Languages = 'languages',
     Machines = 'machines',
     Editors = 'editors',
-    OperatingSystems = 'operating_systems'
+    OperatingSystems = 'operating_systems',
+    Projects = 'projects'
 }
 
 export {DataType};

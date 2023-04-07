@@ -18,7 +18,7 @@
         </a>
       </div>
       <div
-        class="flex items-center mx-auto w-80 border border-[#d0d7de] dark:border-[#444c56] rounded-2xl overflow-hidden"
+        class="flex items-center mx-auto w-80 border border-[#d0d7de] dark:border-[#444c56] hover:border-[#444c56] hover:dark:border-[#d0d7de] rounded-2xl overflow-hidden"
       >
         <input
           @keyup.enter="enterSearch($event)"
