@@ -1,10 +1,5 @@
 import {DataType} from "../enum/DataType";
 
-interface Project {
-    name: string;
-    data: number[];
-}
-
 interface ChartData {
     name: string;
     type: "bar";
@@ -72,32 +67,75 @@ export default class Parse {
         const xAxisData = [];
 
         // 定义系列数据
-        const seriesData = [];
+        const seriesData: ChartData[] = [];
 
+        const projectList: Map<string, Map<string, number>> = new Map;
+        const projectNames: string[] = [];
         for (const res of resList) {
-            const rangeNode = res[0]["range"];
-            xAxisData.push(rangeNode["date"])
+            const rangeNodeDate = res[0]["range"]["date"];
             const projectsNode = res[0][DataType.Projects];
             if (projectsNode) {
                 for (const project of projectsNode) {
-                    const data: ChartData[] = [];
-                    data.push({
-                        name: project["name"],
-                        type: 'bar',
-                        stack: 'total',
-                        emphasis: {
-                            focus: 'series'
-                        },
-                        data: [project["total_seconds"]]
-                    });
-                    seriesData.push(data);
+                    const {name, total_seconds: seconds} = project;
+                    const projectMap: Map<string, number> = new Map;
+                    projectList.set(rangeNodeDate, projectMap.set(name, seconds));
+                    if (projectNames.indexOf(name) === -1) {
+                        projectNames.push(name);
+                    }
+                }
+            } else {
+                projectList.set(rangeNodeDate, new Map())
+            }
+        }
+        for (const [date, project] of projectList) {
+            xAxisData.push(date);
+            if (project == null) {
+                for (let projectName of projectNames) {
+                    seriesData.push({
+                        name: projectName,
+                        type: "bar",
+                        stack: "total",
+                        emphasis: {focus: "series"},
+                        data: [0]
+                    })
+                }
+            } else {
+                for (let projectName of projectNames) {
+                    const name = project.get(projectName);
+                    if (name) {
+                        seriesData.push({
+                            name: projectName,
+                            type: "bar",
+                            stack: "total",
+                            emphasis: {focus: "series"},
+                            data: [name]
+                        })
+                    } else {
+                        seriesData.push({
+                            name: projectName,
+                            type: "bar",
+                            stack: "total",
+                            emphasis: {focus: "series"},
+                            data: [0]
+                        })
+                    }
                 }
             }
         }
+        console.log(seriesData);
     }
 
-// const chartData = this.mergeProjects(dataMapItem);
-// return {date, chartData};
-
-
 }
+
+// const data: ChartData[] = [];
+// data.push({
+//     name: project["name"],
+//     type: 'bar',
+//     stack: 'total',
+//     emphasis: {
+//         focus: 'series'
+//     },
+//     data: [project["total_seconds"]]
+// });
+// data.some(arr => arr.name === project["name"])
+// seriesData.push(data);
