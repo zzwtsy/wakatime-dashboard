@@ -1,5 +1,11 @@
-export default class UpdateData {
-    public static updatePieData(data: { name: string; value: number; }[], title: string) {
+export default class ChartsOptions {
+    /**
+     * 设置饼图数据及标题并返回饼图配置文件
+     * @param data 饼图数据
+     * @param title 饼图标题
+     * @returns 返回饼图配置文件
+     */
+    public static setPieChartsData(data: { name: string; value: number; }[], title: string) {
         return {
             title: {
                 left: 'center',
@@ -49,7 +55,12 @@ export default class UpdateData {
         }
     }
 
-    public static updateBarData(title: string) {
+    /**
+     * 设置柱状图数据
+     * @param title 图表标题
+     * @returns 返回 echarts 配置文件
+     */
+    public static setBarChartsData(title: string) {
         return {
             title: {
                 left: 'center',

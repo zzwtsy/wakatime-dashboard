@@ -10,9 +10,5 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     DoughnutChartVue: typeof import('./src/components/DoughnutChart.vue')['default']
-    ElCard: typeof import('element-plus/es')['ElCard']
-    ElCol: typeof import('element-plus/es')['ElCol']
-    ElContainer: typeof import('element-plus/es')['ElContainer']
-    ElRow: typeof import('element-plus/es')['ElRow']
   }
 }

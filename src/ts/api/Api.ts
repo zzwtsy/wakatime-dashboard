@@ -27,4 +27,13 @@ export default class Api {
         // 返回所有符合条件的文件的 raw url 数组
         return rawUrls;
     }
+
+    /**
+     * 获取 Gist 内保存的 wakatime 统计数据的 json 文件
+     * @param urls Gist 文章链接
+     * @returns wakatime 统计数据的 json 文件数组
+     */
+    public static async getGistPostsContent(urls: string[]): Promise<{}> {
+        return await Promise.all(urls.map(url => AxiosUtil.get(url)));
+    }
 }

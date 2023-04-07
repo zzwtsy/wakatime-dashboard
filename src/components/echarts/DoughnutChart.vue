@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import * as echarts from 'echarts/core';
-import light from '../echars-theme/light.json'
+import light from '../../echars-theme/light.json'
 import {TitleComponent, TooltipComponent, LegendComponent} from 'echarts/components';
 import {PieChart} from 'echarts/charts';
 import {LabelLayout} from 'echarts/features';

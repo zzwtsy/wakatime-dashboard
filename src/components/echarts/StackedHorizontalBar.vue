@@ -13,7 +13,7 @@ import {
 import {BarChart} from 'echarts/charts';
 import {CanvasRenderer} from 'echarts/renderers';
 import {provide} from "vue";
-import light from "../echars-theme/light.json";
+import light from "../../echars-theme/light.json";
 
 const props = defineProps(['option'])
 

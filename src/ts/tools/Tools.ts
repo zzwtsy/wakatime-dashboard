@@ -8,7 +8,7 @@ export default class Tools {
      *  - 当 gistId 合法且本地存储中存在且与传入值相同时，直接返回存储中的值
      *  - 当 gistId 合法但本地存储中存在且与传入值不同时，更新存储中的值并返回该值
      */
-    public static checkGistId(gistId?: string) {
+    public static checkGistId(gistId?: string): string | false {
         // 从本地存储中获取 gistId 的值
         const item = localStorage.getItem("gistId");
 
