@@ -3,13 +3,12 @@ import {DataType} from "../enum/DataType";
 export default class Parse {
 
     /**
-     * 获取所有编程语言的使用时长
+     * 解析[编程语言|代码编辑器|操作系统|电脑]的时长
      * @param resList Gist 保存的 wakatime 统计数据的 json 数组
-     * @returns JSON 数组，其中每个元素包括语言名称和使用时长
      */
-    public static async getPieData(resList: any): Promise<Map<DataType, { name: string, value: number }[]>> {
+    public static async parsePieData(resList: any): Promise<Map<DataType, { name: string, value: number }[]>> {
         // 定义 Map 对象来存储不同类型数据的语言名称和总使用时长
-        const dataMap = new Map();
+        const dataMap: Map<DataType, { name: string, value: number }[]> = new Map();
 
         // 存储不同类型数据的类型值数组
         const dataTypes = [DataType.Languages, DataType.Machines, DataType.Editors, DataType.OperatingSystems]
@@ -38,50 +37,54 @@ export default class Parse {
         return dataMap;
     }
 
+    /***
+     * 解析柱状图的数据
+     */
+    public static parseBarData(resList: any): {
+        seriesData: { stack: string; data: number[]; name: string; emphasis: { focus: string }; type: string }[];
+        xAxisData: string[]
+    } {
+        // 定义用于存储每个日期的项目名称和总时间键值对的 Map 对象
+        const dateProjectMap: Map<string, Map<string, number>> = new Map();
+        // 定义 Set 对象来存储所有出现过的项目名称
+        const projectNames: Set<string> = new Set();
 
-    /**
-     * @param resList Gist 保存的 wakatime 统计数据的 json 数组
-     * @returns { seriesData: any[]; xAxisData: any[] } 堆叠柱状图数据
-     * */
-    public static getBarData(resList: any): { seriesData: any[]; xAxisData: any[] } {
-        const dateProjectMap = new Map();
-        const projectNames = new Set();
-        // 遍历所有输入对象
+        // 遍历结果列表，计算每个日期的项目名称和总时间键值对，并将其添加到 dateProjectMap 中
         for (const input of resList) {
-            const projectMap = new Map();
-            // 遍历输入对象中的每个项目
+            const projectMap: Map<string, number> = new Map();
             for (const project of input[0].projects) {
                 projectNames.add(project.name);
                 projectMap.set(project.name, project.total_seconds);
             }
-            // 获取该项目对应的日期
             const dateStr = input[0].range.date;
             dateProjectMap.set(dateStr, projectMap);
         }
 
-        const xAxisData = [];
-        const dataMap = new Map();
-        const seriesData = [];
-
-        for (const name of projectNames) {
-            const timeArr = Array.from(dateProjectMap, ([, v]) => /* 转换为小时 => */ (v.get(name) / 3600) || 0);
-            dataMap.set(name, timeArr);
-        }
-
-        for (const [name, timeArr] of dataMap) {
-            seriesData.push({
+        // 将所有日期作为 X 轴数据
+        const xAxisData: string[] = [...dateProjectMap.keys()];
+        // 定义 Map 对象用于存储每个项目在不同时间段内的总时间数组
+        const dataMap: Map<string, number[]> = new Map(
+            // 将 Set 对象转换为数组，然后使用映射函数获取每个项目在不同时间段内的总时间数组，并构建成键值对数组，
+            // 最后使用 Map 构造函数将键值对数组转换为 Map 对象
+            Array.from(projectNames, name => [
                 name,
-                type: "bar",
-                stack: "total",
-                emphasis: {focus: "series"},
-                data: timeArr
-            });
-        }
+                Array.from(dateProjectMap.values(), projectMap =>
+                    (projectMap.get(name) || 0) / 3600 // 将秒转换为小时
+                ),
+            ])
+        );
+        // 定义数组用于 echarts 堆叠柱状图 的 seriesData 的数据
+        const seriesData = Array.from(dataMap, ([name, timeArr]) => ({
+            name,
+            type: "bar",
+            stack: "total",
+            emphasis: {focus: "series"},
+            data: timeArr,
+        }));
 
-        xAxisData.push(...dateProjectMap.keys());
         return {
             xAxisData,
-            seriesData
+            seriesData,
         };
     }
 
