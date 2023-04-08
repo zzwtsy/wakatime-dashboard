@@ -9,9 +9,10 @@ import {TitleComponent, TooltipComponent, LegendComponent} from 'echarts/compone
 import {PieChart} from 'echarts/charts';
 import {LabelLayout} from 'echarts/features';
 import {CanvasRenderer} from 'echarts/renderers';
-import VChart, {THEME_KEY} from 'vue-echarts';
+import VChart, {LOADING_OPTIONS_KEY, THEME_KEY} from 'vue-echarts';
 import {provide} from 'vue';
 import {store} from "../../store/Store";
+import {loadingOption} from '../../ts/tools/Const'
 
 const props = defineProps(['option'])
 
@@ -25,6 +26,7 @@ echarts.use([
 ]);
 
 provide(THEME_KEY, light);
+provide(LOADING_OPTIONS_KEY,loadingOption)
 
 </script>
 
