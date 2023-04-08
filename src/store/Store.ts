@@ -6,5 +6,6 @@ export const store = reactive({
     machinesOption: {},
     editorsOption: {},
     projectsOption: {},
-    selectValue: 7
+    selectValue: 7,
+    echartsLoading: false
 })

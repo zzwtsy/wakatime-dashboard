@@ -1,12 +1,4 @@
-import { DataType } from "../enum/DataType";
-
-interface ProjectData {
-    name: string;
-    type: string;
-    stack: string;
-    emphasis: { focus: string };
-    data: number[];
-}
+import {DataType} from "../enum/DataType";
 
 export default class Parse {
 
@@ -33,30 +25,25 @@ export default class Parse {
                 const dataList = res[0][dataType];
 
                 // 遍历当前类型数据的所有语言使用记录
-                for (const { name, total_seconds: seconds } of dataList) {
+                for (const {name, total_seconds: seconds} of dataList) {
                     // 更新或新增 Map 中对应的键值对
                     dataMapItem.set(name, (dataMapItem.get(name) || 0) + seconds);
                 }
             }
 
             // 将 Map 转换为 JSON 数组，并添加到总数据 Map 中
-            dataMap.set(dataType, Array.from(dataMapItem.entries()).map(([name, value]) => ({ name, value })));
+            dataMap.set(dataType, Array.from(dataMapItem.entries()).map(([name, value]) => ({name, value})));
         }
 
         return dataMap;
     }
 
-    // {
-    //     name: 'Direct',
-    //     type: 'bar',
-    //     stack: 'total',
-    //     emphasis: {
-    //         focus: 'series'
-    //     },
-    //     data: [320, 302, 301, 334, 390, 330, 320]
-    // }
 
-    public static getBarData(resList: any) {
+    /**
+     * @param resList Gist 保存的 wakatime 统计数据的 json 数组
+     * @returns { seriesData: any[]; xAxisData: any[] } 堆叠柱状图数据
+     * */
+    public static getBarData(resList: any): { seriesData: any[]; xAxisData: any[] } {
         const dateProjectMap = new Map();
         const projectNames = new Set();
         // 遍历所有输入对象
@@ -77,7 +64,7 @@ export default class Parse {
         const seriesData = [];
 
         for (const name of projectNames) {
-            const timeArr = Array.from(dateProjectMap, ([k, v]) => v.get(name) || 0);
+            const timeArr = Array.from(dateProjectMap, ([, v]) => /* 转换为小时 => */ (v.get(name) / 3600) || 0);
             dataMap.set(name, timeArr);
         }
 
@@ -86,18 +73,16 @@ export default class Parse {
                 name,
                 type: "bar",
                 stack: "total",
-                emphasis: { focus: "series" },
+                emphasis: {focus: "series"},
                 data: timeArr
             });
         }
 
         xAxisData.push(...dateProjectMap.keys());
-        const result = {
+        return {
             xAxisData,
             seriesData
         };
-
-        return result;
     }
 
 }

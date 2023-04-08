@@ -73,15 +73,48 @@ export default class ChartsOptions {
             },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: {
-                    type: 'shadow'
+                formatter: (params: any) => {
+                    let content = '';
+                    let name = '';
+                    for (const param of params) {
+                        name = param.name;
+                        if (param.value > 0) {
+                            const totalSeconds = param.value * 3600;
+                            const hours = Math.floor(totalSeconds / 3600);
+                            const minutes = Math.floor(totalSeconds % 3600 / 60);
+                            const seconds = Math.floor(totalSeconds % 60);
+                            content += '<div style="margin: 0 0 0;line-height:1;">\n' +
+                                '    <div style="margin: 0 0 0;line-height:1;">\n' +
+                                `        ${param.marker}\n` +
+                                '        <span style="\n' +
+                                '                font-size:14px;\n' +
+                                '                color:#666;\n' +
+                                '                font-weight:400;\n' +
+                                '                margin-left:2px"\n' +
+                                '        >\n' +
+                                `            ${param.seriesName}\n` +
+                                '        </span>\n' +
+                                '        <span style="\n' +
+                                '                float:right;\n' +
+                                '                margin-left:20px;\n' +
+                                '                font-size:14px;\n' +
+                                '                color:#666;\n' +
+                                '                font-weight:900"\n' +
+                                '        >\n' +
+                                `            ${hours}h ${minutes}m ${seconds}s\n` +
+                                '        </span>\n' +
+                                '        <div style="clear:both"></div>\n' +
+                                '    </div>\n' +
+                                '    <div style="clear:both"></div>\n' +
+                                '</div>';
+                        }
+                    }
+                    if (content == '') {
+                        console.log("name >>", name)
+                        return `<span>${name}</span>`
+                    }
+                    return `<span>${name}</span> <br/>${content}</div> <div style="clear:both"></div></div><div style="clear:both"></div></div></div>`;
                 },
-                valueFormatter: (time: number) => {
-                    const hours = Math.floor(time / 3600);
-                    const minutes = Math.floor(time % 3600 / 60);
-                    const seconds = Math.floor(time % 60);
-                    return `${hours}h ${minutes}m ${seconds}s`;
-                }
             },
             legend: {
                 type: 'scroll',
@@ -94,7 +127,7 @@ export default class ChartsOptions {
                 containLabel: true
             },
             yAxis: {
-                type: 'value'
+                type: 'value',
             },
             xAxis: {
                 type: 'category',

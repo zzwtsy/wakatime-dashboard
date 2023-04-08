@@ -1,5 +1,8 @@
-html {
-    --el-bg-color: #fff;
-    --el-color-primary: #516b91;
-    --el-text-color-regular: #d0d7de;
+:root {
+    --text-color: #656d76;
+    --border-color: #d0d7de;
+    --hover-text-color: #1F2328;
+    --icon-bg-color: #656d76;
+    --hover-icon-bg-color: var(--hover-text-color);
+    --hover-border-color: #444c56;
 }

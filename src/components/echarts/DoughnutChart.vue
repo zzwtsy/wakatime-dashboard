@@ -1,5 +1,5 @@
 <template>
-    <v-chart class="chart" :option="props.option" autoresize/>
+    <v-chart class="chart" :option="props.option" :loading="store.echartsLoading" autoresize/>
 </template>
 
 <script setup lang="ts">
@@ -11,6 +11,7 @@ import {LabelLayout} from 'echarts/features';
 import {CanvasRenderer} from 'echarts/renderers';
 import VChart, {THEME_KEY} from 'vue-echarts';
 import {provide} from 'vue';
+import {store} from "../../store/Store";
 
 const props = defineProps(['option'])
 

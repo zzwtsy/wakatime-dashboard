@@ -1,5 +1,5 @@
 <template>
-    <v-chart class="chart" :option="props.option" autoresize/>
+    <v-chart class="chart" :option="props.option" :loading="store.echartsLoading" autoresize/>
 </template>
 
 <script setup lang="ts">
@@ -12,8 +12,9 @@ import {
 } from 'echarts/components';
 import {BarChart} from 'echarts/charts';
 import {CanvasRenderer} from 'echarts/renderers';
-import {provide} from "vue";
+import {provide, ref} from "vue";
 import light from "../../echars-theme/light.json";
+import {store} from "../../store/Store";
 
 const props = defineProps(['option'])
 
@@ -26,6 +27,7 @@ echarts.use([
 ]);
 
 provide(THEME_KEY, light);
+
 </script>
 
 <style scoped>

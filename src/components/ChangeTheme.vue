@@ -2,10 +2,10 @@
     <div class="change-theme">
         <button @click="toggleDark()">
             <div v-if="isDark">
-                <VPIconMoon class="h-8 fill-[#444c56]"/>
+                <VPIconMoon class="h-8 fill-[--dark-icon-bg-color] hover:fill-[--dark-hover-icon-bg-color]"/>
             </div>
             <div v-else>
-                <VPIconSun class="h-8 fill-[#d0d7de]"/>
+                <VPIconSun class="h-8 fill-[--icon-bg-color] hover:fill-[--hover-icon-bg-color]"/>
             </div>
         </button>
     </div>

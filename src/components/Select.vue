@@ -1,6 +1,6 @@
 <template>
     <div class="container mx-auto">
-        <el-select @change="change" v-model="value" class="m-1 outline-none">
+        <el-select @change="change" v-model="value" class="light m-1 outline-none">
             <el-option
                     v-for="item in options"
                     :key="item.value"
@@ -43,9 +43,27 @@ const options = [
 
 const change = async () => {
     store.selectValue = value.value;
+    // 开启 echarts loading 动画
+    store.echartsLoading = true;
     const gistId = Tools.checkGistId();
     if (gistId !== false) {
         await getPieDataAndShow(gistId);
+        // 关闭 echarts loading 动画
+        store.echartsLoading = false
     }
 }
 </script>
+
+<style scoped>
+.light {
+    --el-text-color-regular: var(--text-color);
+}
+
+.el-select {
+    --el-color-primary: var(--hover-border-color);
+}
+
+.el-select-dropdown__item.selected {
+    --el-color-primary: var(--hover-border-color);
+}
+</style>
