@@ -1,18 +1,12 @@
-import {DataType} from "../enum/DataType";
+import { DataType } from "../enum/DataType";
 
-interface ChartData {
+interface ProjectData {
     name: string;
-    type: "bar";
-    stack: "total";
-    emphasis: { focus: "series" };
+    type: string;
+    stack: string;
+    emphasis: { focus: string };
     data: number[];
 }
-
-// name: string,
-// type: "bar",
-// stack: "total",
-// emphasis: {focus: "series"},
-// data: number[]
 
 export default class Parse {
 
@@ -39,104 +33,71 @@ export default class Parse {
                 const dataList = res[0][dataType];
 
                 // 遍历当前类型数据的所有语言使用记录
-                for (const {name, total_seconds: seconds} of dataList) {
+                for (const { name, total_seconds: seconds } of dataList) {
                     // 更新或新增 Map 中对应的键值对
                     dataMapItem.set(name, (dataMapItem.get(name) || 0) + seconds);
                 }
             }
 
             // 将 Map 转换为 JSON 数组，并添加到总数据 Map 中
-            dataMap.set(dataType, Array.from(dataMapItem.entries()).map(([name, value]) => ({name, value})));
+            dataMap.set(dataType, Array.from(dataMapItem.entries()).map(([name, value]) => ({ name, value })));
         }
 
         return dataMap;
     }
 
-// {
-//     name: 'Direct',
-//     type: 'bar',
-//     stack: 'total',
-//     emphasis: {
-//         focus: 'series'
-//     },
-//     data: [320, 302, 301, 334, 390, 330, 320]
-// }
-// TODO: 获取堆叠柱状图数据
+    // {
+    //     name: 'Direct',
+    //     type: 'bar',
+    //     stack: 'total',
+    //     emphasis: {
+    //         focus: 'series'
+    //     },
+    //     data: [320, 302, 301, 334, 390, 330, 320]
+    // }
+
     public static getBarData(resList: any) {
-        // 定义 X 轴数据
+        const dateProjectMap = new Map();
+        const projectNames = new Set();
+        // 遍历所有输入对象
+        for (const input of resList) {
+            const projectMap = new Map();
+            // 遍历输入对象中的每个项目
+            for (const project of input[0].projects) {
+                projectNames.add(project.name);
+                projectMap.set(project.name, project.total_seconds);
+            }
+            // 获取该项目对应的日期
+            const dateStr = input[0].range.date;
+            dateProjectMap.set(dateStr, projectMap);
+        }
+
         const xAxisData = [];
+        const dataMap = new Map();
+        const seriesData = [];
 
-        // TODO: 改成Map
-        // 定义系列数据
-        const seriesData: ChartData[] = [];
+        for (const name of projectNames) {
+            const timeArr = Array.from(dateProjectMap, ([k, v]) => v.get(name) || 0);
+            dataMap.set(name, timeArr);
+        }
 
-        const projectList: Map<string, Map<string, number>> = new Map;
-        const projectNames: string[] = [];
-        for (const res of resList) {
-            const rangeNodeDate = res[0]["range"]["date"];
-            const projectsNode = res[0][DataType.Projects];
-            if (projectsNode) {
-                for (const project of projectsNode) {
-                    const {name, total_seconds: seconds} = project;
-                    const projectMap: Map<string, number> = new Map;
-                    projectList.set(rangeNodeDate, projectMap.set(name, seconds));
-                    if (projectNames.indexOf(name) === -1) {
-                        projectNames.push(name);
-                    }
-                }
-            } else {
-                projectList.set(rangeNodeDate, new Map())
-            }
+        for (const [name, timeArr] of dataMap) {
+            seriesData.push({
+                name,
+                type: "bar",
+                stack: "total",
+                emphasis: { focus: "series" },
+                data: timeArr
+            });
         }
-        for (const [date, project] of projectList) {
-            xAxisData.push(date);
-            if (project == null) {
-                for (let projectName of projectNames) {
-                    seriesData.push({
-                        name: projectName,
-                        type: "bar",
-                        stack: "total",
-                        emphasis: {focus: "series"},
-                        data: [0]
-                    })
-                }
-            } else {
-                for (let projectName of projectNames) {
-                    const name = project.get(projectName);
-                    if (name) {
-                        seriesData.push({
-                            name: projectName,
-                            type: "bar",
-                            stack: "total",
-                            emphasis: {focus: "series"},
-                            data: [name]
-                        })
-                    } else {
-                        seriesData.push({
-                            name: projectName,
-                            type: "bar",
-                            stack: "total",
-                            emphasis: {focus: "series"},
-                            data: [0]
-                        })
-                    }
-                }
-            }
-        }
-        console.log(">>>", seriesData);
+
+        xAxisData.push(...dateProjectMap.keys());
+        const result = {
+            xAxisData,
+            seriesData
+        };
+
+        return result;
     }
 
 }
-
-// const data: ChartData[] = [];
-// data.push({
-//     name: project["name"],
-//     type: 'bar',
-//     stack: 'total',
-//     emphasis: {
-//         focus: 'series'
-//     },
-//     data: [project["total_seconds"]]
-// });
-// data.some(arr => arr.name === project["name"])
-// seriesData.push(data);
