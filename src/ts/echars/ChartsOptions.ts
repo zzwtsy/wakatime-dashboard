@@ -75,11 +75,10 @@ export default class ChartsOptions {
         trigger: "axis",
         formatter: (params: any) => {
           let content = "";
-          let name = "";
+          let name = params[0].name;
           for (const param of params) {
-            name = param.name;
-            if (Math.floor(param.value) > 0) {
-              const totalSeconds = param.value * 3600;
+            const totalSeconds = param.value * 3600;
+            if (Math.floor(totalSeconds) > 0) {
               content +=
                 '<div style="margin: 0 0 0;line-height:1;">' +
                 '    <div style="margin: 0 0 0;line-height:1;">' +

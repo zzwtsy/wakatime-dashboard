@@ -1,6 +1,11 @@
 <template>
   <div class="container mx-auto">
-    <el-select @change="change" v-model="value" class="light m-1 outline-none">
+    <el-select
+      @change="change"
+      v-model="value"
+      class="light m-1 outline-none"
+      style="width: 9rem"
+    >
       <el-option
         v-for="item in options"
         :key="item.value"
