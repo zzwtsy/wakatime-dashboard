@@ -50,11 +50,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}
         
-      - name: Build
-        run: pnpm build
-        
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
+
+      - name: Build
+        run: pnpm build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
