@@ -35,7 +35,7 @@ jobs:
           pnpm install --no-frozen-lockfile
       
       - name: Build
-        run: vite build
+        run: pnpm build
       
       - name: Deploy WakaTime Dashboard
         env: 
