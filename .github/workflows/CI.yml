@@ -46,8 +46,8 @@ jobs:
           ls
           echo "===================================================="
           cd ./dist && git init --initial-branch=gh-page && git add .
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "zzwtsy"
+          git config user.email "58852496+zzwtsy@users.noreply.github.com"
           git add .
           git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
           git branch -a
