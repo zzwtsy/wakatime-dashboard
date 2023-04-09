@@ -1,9 +1,9 @@
 <template>
-  <header class="w-full">
-    <nav
-      class="flex justify-center items-center relative w-full h-16 border-b border-[--border-color] dark:border-[--dark-border-color]"
-    >
-      <div class="absolute flex items-center left-60">
+  <header
+    class="w-full border-b border-[--border-color] dark:border-[--dark-border-color]"
+  >
+    <nav class="flex justify-center items-center relative container h-16">
+      <div class="hidden lg:flex items-center float-left ml-1">
         <a
           target="_blank"
           href="https://github.com/zzwtsy/wakatime-dashboard-vue"
@@ -27,7 +27,7 @@
           class="w-full h-8 border-none outline-none bg-transparent text-center text-black dark:text-white"
         />
       </div>
-      <ChangeTheme class="flex absolute items-center right-60" />
+      <ChangeTheme class="hidden md:flex items-center float-right mr-1" />
     </nav>
   </header>
 </template>

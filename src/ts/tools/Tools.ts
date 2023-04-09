@@ -1,6 +1,6 @@
 export default class Tools {
   /**
-   * 检查 gistId 是否合法，并且将 valid 的 gistId 存储到本地存储中
+   * 检查 gistId 是否合法，并且将用户的 gistId 存储到本地存储中
    * @param {string} gistId - 待检查的 gistId 字符串
    * @returns {string | false} - 返回值类型为 string 或 false，表示检查结果
    *  - 当 gistId 非法或本地存储中已存在非法的 gistId 时，返回 false
@@ -13,7 +13,7 @@ export default class Tools {
     const item = localStorage.getItem("gistId");
 
     // 如果传入的 gistId 符合特定条件，则使用传入的值覆盖掉原有的值，并返回新的值
-    if (gistId?.length === 32 && /^[0-9a-f]{32}$/i.test(gistId)) {
+    if (gistId != null && /^[0-9a-f]{32}$/i.test(gistId)) {
       // 如果传入的值和本地存储中的值不相等，则将传入的值写入本地存储
       if (gistId !== item) {
         localStorage.setItem("gistId", gistId);
@@ -22,7 +22,7 @@ export default class Tools {
       return gistId;
     }
     // 如果传入的 gistId 不符合特定条件，则判断本地存储中的值是否符合条件
-    else if (item?.length === 32 && /^[0-9a-f]{32}$/i.test(item)) {
+    else if (item != null && /^[0-9a-f]{32}$/i.test(item)) {
       // 如果本地存储中的值符合条件，则返回这个值
       return item;
     }
@@ -30,5 +30,17 @@ export default class Tools {
     else {
       return false;
     }
+  }
+
+  /**
+   * 将秒转换为 (小时 分钟 秒)
+   * @param totalSeconds 总秒数
+   * @returns [hours] h [minutes] m [seconds] s
+   */
+  public static timeConverter(totalSeconds: number) {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = Math.floor(totalSeconds % 60);
+    return `${hours}h ${minutes}m ${seconds}s`;
   }
 }
