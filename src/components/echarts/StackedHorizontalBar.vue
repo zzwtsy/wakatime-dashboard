@@ -14,6 +14,7 @@ import {
   TooltipComponent,
   GridComponent,
   LegendComponent,
+  ToolboxComponent,
 } from "echarts/components";
 import { BarChart, LineChart } from "echarts/charts";
 import { CanvasRenderer } from "echarts/renderers";
@@ -31,6 +32,7 @@ echarts.use([
   BarChart,
   LineChart,
   CanvasRenderer,
+  ToolboxComponent,
 ]);
 
 provide(THEME_KEY, light);

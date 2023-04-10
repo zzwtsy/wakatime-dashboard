@@ -23,6 +23,12 @@ export default class ChartsOptions {
         trigger: "item",
         valueFormatter: (time: number) => Tools.timeConverter(time),
       },
+      toolbox: {
+        show: true,
+        feature: {
+          saveAsImage: {},
+        },
+      },
       legend: {
         type: "scroll",
         top: "7%",
@@ -69,6 +75,12 @@ export default class ChartsOptions {
         text: title,
         textStyle: {
           color: "#516b91",
+        },
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          saveAsImage: {},
         },
       },
       tooltip: {

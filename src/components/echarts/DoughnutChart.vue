@@ -14,6 +14,7 @@ import {
   TitleComponent,
   TooltipComponent,
   LegendComponent,
+  ToolboxComponent,
 } from "echarts/components";
 import { PieChart } from "echarts/charts";
 import { LabelLayout } from "echarts/features";
@@ -32,6 +33,7 @@ echarts.use([
   PieChart,
   CanvasRenderer,
   LabelLayout,
+  ToolboxComponent,
 ]);
 
 provide(THEME_KEY, light);
