@@ -23,7 +23,7 @@
         <input
           @keyup.enter="enterSearch($event)"
           type="text"
-          placeholder="请输入 Gist Id"
+          placeholder="Input Your Gist Id"
           class="w-full h-8 border-none outline-none bg-transparent text-center text-black dark:text-white"
         />
       </div>

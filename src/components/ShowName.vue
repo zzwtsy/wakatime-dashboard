@@ -1,5 +1,7 @@
 <template>
-  <div class="container mx-auto flex justify-center items-center">
+  <div
+    class="container mx-auto flex justify-center items-center text-[--text-color] dark:text-[--dark-text-color]"
+  >
     <span>{{ store.userName }}</span>
   </div>
 </template>

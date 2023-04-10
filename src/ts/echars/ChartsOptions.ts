@@ -119,7 +119,7 @@ export default class ChartsOptions {
             }
           }
           if (content == "") {
-            return `<span>${name}</span>`;
+            return `<span>${name}</span><br/><span>There is nothing here</span>`;
           }
           return `<span>${name}</span> <br/>${content}</div> <div style="clear:both"></div></div><div style="clear:both"></div></div></div>`;
         },
