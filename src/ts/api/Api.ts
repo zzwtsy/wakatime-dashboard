@@ -14,7 +14,9 @@ export default class Api {
     );
 
     // 获取用户名
-    store.userName = result.owner.login;
+    if (result.owner.login != null && result.owner.login != "") {
+      store.userName = result.owner.login + "'s WakaTime";
+    }
 
     // 获取 response 中的 files 对象
     const files = result.files;

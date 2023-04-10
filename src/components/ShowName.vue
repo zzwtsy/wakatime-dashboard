@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto flex justify-center items-center">
-    <span>{{ store.userName }}'s WakaTime</span>
+    <span>{{ store.userName }}</span>
   </div>
 </template>
 
