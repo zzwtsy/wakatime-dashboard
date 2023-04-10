@@ -1,6 +1,5 @@
 <template>
   <v-chart
-    class="chart"
     :option="props.option"
     :loading="store.echartsLoading"
     autoresize
@@ -15,6 +14,7 @@ import {
   GridComponent,
   LegendComponent,
   ToolboxComponent,
+  DataZoomComponent,
 } from "echarts/components";
 import { BarChart, LineChart } from "echarts/charts";
 import { CanvasRenderer } from "echarts/renderers";
@@ -33,6 +33,7 @@ echarts.use([
   LineChart,
   CanvasRenderer,
   ToolboxComponent,
+  DataZoomComponent,
 ]);
 
 provide(THEME_KEY, light);

@@ -77,6 +77,7 @@ export default class ChartsOptions {
           color: "#516b91",
         },
       },
+      dataZoom: [{}],
       toolbox: {
         show: true,
         feature: {
@@ -127,12 +128,6 @@ export default class ChartsOptions {
       legend: {
         type: "scroll",
         top: "7%",
-      },
-      grid: {
-        left: "3%",
-        right: "4%",
-        bottom: "3%",
-        containLabel: true,
       },
       yAxis: {
         type: "value",
