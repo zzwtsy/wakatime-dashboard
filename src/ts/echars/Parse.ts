@@ -53,13 +53,7 @@ export default class Parse {
    * 解析柱状图的数据
    */
   public static parseBarData(resList: any): {
-    seriesData: {
-      stack: string;
-      data: number[];
-      name: string;
-      emphasis: { focus: string };
-      type: string;
-    }[];
+    seriesData: object[];
     xAxisData: string[];
   } {
     // 定义用于存储每个日期的项目名称和总时间键值对的 Map 对象
@@ -93,13 +87,31 @@ export default class Parse {
       ])
     );
     // 定义数组用于 echarts 堆叠柱状图 的 seriesData 的数据
-    const seriesData = Array.from(dataMap, ([name, timeArr]) => ({
+    const seriesData: object[] = Array.from(dataMap, ([name, timeArr]) => ({
       name,
       type: "bar",
       stack: "total",
       emphasis: { focus: "series" },
       data: timeArr,
     }));
+    
+    // 添加每天写代码总时长
+    const lineData = Array.from(dateProjectMap).map(([, project]) => {
+      const totalHours = Array.from(project.values()).reduce(
+        (acc, cur) => acc + cur,
+        0
+      );
+      return totalHours / 3600;
+    });
+
+    seriesData.push({
+      name: "Total",
+      type: "line",
+      emphasis: {
+        focus: "series",
+      },
+      data: lineData,
+    });
 
     return {
       xAxisData,

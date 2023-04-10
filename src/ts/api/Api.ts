@@ -1,3 +1,4 @@
+import { store } from "../../store/Store";
 import AxiosUtil from "../utils/AxiosUtil";
 
 export default class Api {
@@ -11,6 +12,9 @@ export default class Api {
     const result = await AxiosUtil.get<any>(
       `https://api.github.com/gists/${gistId}`
     );
+
+    // 获取用户名
+    store.userName = result.owner.login;
 
     // 获取 response 中的 files 对象
     const files = result.files;

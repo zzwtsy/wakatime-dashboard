@@ -18,6 +18,7 @@ declare module '@vue/runtime-core' {
     Header: typeof import('./src/components/Header.vue')['default']
     IconGithub: typeof import('./src/components/icons/IconGithub.vue')['default']
     Select: typeof import('./src/components/Select.vue')['default']
+    ShowName: typeof import('./src/components/ShowName.vue')['default']
     StackedHorizontalBar: typeof import('./src/components/echarts/StackedHorizontalBar.vue')['default']
     VPIconMoon: typeof import('./src/components/icons/VPIconMoon.vue')['default']
     VPIconSun: typeof import('./src/components/icons/VPIconSun.vue')['default']

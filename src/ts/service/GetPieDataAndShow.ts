@@ -2,7 +2,7 @@ import { store } from "../../store/Store";
 import Api from "../api/Api";
 import ChartsOptions from "../echars/ChartsOptions";
 import { DataType } from "../enum/DataType";
-import Parse from "../tools/Parse";
+import Parse from "../echars/Parse";
 
 /**
  * 解析 Gist 中的数据，并将数据更新到展示组件

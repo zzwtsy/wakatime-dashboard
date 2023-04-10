@@ -8,4 +8,5 @@ export const store = reactive({
   projectsOption: {},
   selectValue: 7,
   echartsLoading: false,
+  userName: "",
 });

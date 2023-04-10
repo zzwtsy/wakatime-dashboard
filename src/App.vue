@@ -1,5 +1,6 @@
 <template>
   <HeaderVue class="mb-5" />
+  <ShowName class="mt-20 mb-5" />
   <Select />
   <BodyVue />
   <FooterVue class="mt-5" />
@@ -13,6 +14,7 @@ import Tools from "./ts/tools/Tools";
 import { onMounted } from "vue";
 import { getPieDataAndShow } from "./ts/service/GetPieDataAndShow";
 import Select from "./components/Select.vue";
+import ShowName from "./components/ShowName.vue";
 
 onMounted(async () => {
   const gistId = Tools.checkGistId();
