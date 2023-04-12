@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import IconGithub from "./icons/IconGithub.vue";
 import ChangeTheme from "./ChangeTheme.vue";
-import { getPieDataAndShow } from "../ts/service/GetPieDataAndShow";
+import { getPieDataAndShow } from "../ts/service/GetChartsDataAndShow";
 import Tools from "../ts/tools/Tools";
 
 /**

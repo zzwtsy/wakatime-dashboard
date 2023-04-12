@@ -19,7 +19,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import Tools from "../ts/tools/Tools";
-import { getPieDataAndShow } from "../ts/service/GetPieDataAndShow";
+import { getPieDataAndShow } from "../ts/service/GetChartsDataAndShow";
 import { store } from "../store/Store";
 
 const value = ref(7);
