@@ -19,7 +19,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import Tools from "../ts/tools/Tools";
-import { getPieDataAndShow } from "../ts/service/GetChartsDataAndShow";
+import { getChartsDataAndShow } from "../ts/service/GetChartsDataAndShow";
 import { store } from "../store/Store";
 
 const value = ref(7);
@@ -50,7 +50,7 @@ const change = async () => {
   store.selectValue = value.value;
   const gistId = Tools.checkGistId();
   if (gistId !== false) {
-    await getPieDataAndShow(gistId);
+    await getChartsDataAndShow(gistId);
   }
 };
 </script>

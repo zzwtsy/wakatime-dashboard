@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import IconGithub from "./icons/IconGithub.vue";
 import ChangeTheme from "./ChangeTheme.vue";
-import { getPieDataAndShow } from "../ts/service/GetChartsDataAndShow";
+import { getChartsDataAndShow } from "../ts/service/GetChartsDataAndShow";
 import Tools from "../ts/tools/Tools";
 
 /**
@@ -55,6 +55,6 @@ const enterSearch = async (event: any) => {
 
   gistId = checkGistId;
 
-  await getPieDataAndShow(gistId);
+  await getChartsDataAndShow(gistId);
 };
 </script>
