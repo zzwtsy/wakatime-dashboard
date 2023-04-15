@@ -8,7 +8,7 @@ import Parse from "../echars/Parse";
  * 解析 Gist 中的数据，并将数据更新到展示组件
  * @param gistId Gist Id
  */
-export const getPieDataAndShow = async (gistId: string) => {
+export const getChartsDataAndShow = async (gistId: string) => {
   // 开启 echarts loading 动画
   store.echartsLoading = true;
   try {
@@ -32,7 +32,7 @@ export const getPieDataAndShow = async (gistId: string) => {
       "Projects Code Time"
     );
 
-    const chartsDataList = [
+    const pieChartsDataList = [
       {
         key: DataType.Languages,
         title: "Language Usage Time",
@@ -51,8 +51,8 @@ export const getPieDataAndShow = async (gistId: string) => {
     const pieData = await Parse.parsePieData(resList);
 
     // 更新饼图展示组件
-    chartsDataList.forEach((chartData) => {
-      const data = pieData.get(DataType.OperatingSystems);
+    pieChartsDataList.forEach((chartData) => {
+      const data = pieData.get(chartData.key);
 
       if (data) {
         const storeKey = chartData.storeKey;
