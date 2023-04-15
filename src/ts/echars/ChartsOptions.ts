@@ -19,6 +19,9 @@ export default class ChartsOptions {
           color: "#516b91",
         },
       },
+      textStyle: {
+        fontFamily: "'JetBrains Mono', monospace, sans-serif"
+      },
       tooltip: {
         trigger: "item",
         valueFormatter: (time: number) => Tools.timeConverter(time),
@@ -76,6 +79,9 @@ export default class ChartsOptions {
         textStyle: {
           color: "#516b91",
         },
+      },
+      textStyle: {
+        fontFamily: "'JetBrains Mono', monospace, sans-serif"
       },
       dataZoom: [{}],
       toolbox: {
