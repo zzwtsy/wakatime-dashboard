@@ -19,9 +19,6 @@ export default class ChartsOptions {
           color: "#516b91",
         },
       },
-      textStyle: {
-        fontFamily: "'JetBrains Mono', monospace, sans-serif"
-      },
       tooltip: {
         trigger: "item",
         valueFormatter: (time: number) => Tools.timeConverter(time),
@@ -35,6 +32,10 @@ export default class ChartsOptions {
       legend: {
         type: "scroll",
         top: "7%",
+        textStyle: {
+          fontWeight: 'normal',
+          fontFamily: "'JetBrains Mono', monospace, sans-serif"
+        },
       },
       series: [
         {
@@ -79,9 +80,6 @@ export default class ChartsOptions {
         textStyle: {
           color: "#516b91",
         },
-      },
-      textStyle: {
-        fontFamily: "'JetBrains Mono', monospace, sans-serif"
       },
       dataZoom: [{}],
       toolbox: {
@@ -134,6 +132,10 @@ export default class ChartsOptions {
       legend: {
         type: "scroll",
         top: "7%",
+        textStyle: {
+          fontWeight: 'normal',
+          fontFamily: "'JetBrains Mono', monospace, sans-serif"
+        },
       },
       yAxis: {
         type: "value",
