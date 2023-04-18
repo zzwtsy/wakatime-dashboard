@@ -1,8 +1,10 @@
-import { defineConfig } from "vite";
+import { defineConfig, splitVendorChunk, splitVendorChunkPlugin } from "vite";
 import vue from "@vitejs/plugin-vue";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+
+const getVendorChunk = splitVendorChunk();
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -27,11 +29,14 @@ export default defineConfig({
     },
     rollupOptions: {
       output: {
-        manualChunks: {
-          echarts: ["echarts"],
-          vueuse: ["@vueuse/core"],
-          element_plus: ["element-plus"],
-          axios: ["axios"],
+        manualChunks(id, options) {
+          if (id.indexOf("echarts") !== -1) {
+            return "echarts";
+          }
+          if(id.indexOf("element-plus") !== -1) {
+            return "element-plus"
+          }
+          return getVendorChunk(id, options);
         },
       },
     },

@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import * as echarts from "echarts/core";
+import { use } from "echarts/core";
 import light from "../../echars-theme/light.json";
 import {
   TitleComponent,
@@ -26,7 +26,7 @@ import { store } from "../../store/Store";
 
 const props = defineProps(["option"]);
 
-echarts.use([
+use([
   TitleComponent,
   TooltipComponent,
   LegendComponent,

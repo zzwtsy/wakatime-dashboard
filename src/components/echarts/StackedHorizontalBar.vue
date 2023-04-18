@@ -1,14 +1,10 @@
 <template>
-  <v-chart
-    :option="props.option"
-    :loading="store.echartsLoading"
-    autoresize
-  />
+  <v-chart :option="props.option" :loading="store.echartsLoading" autoresize />
 </template>
 
 <script setup lang="ts">
 import VChart, { LOADING_OPTIONS_KEY, THEME_KEY } from "vue-echarts";
-import * as echarts from "echarts/core";
+import { use } from "echarts/core";
 import {
   TooltipComponent,
   GridComponent,
@@ -25,7 +21,7 @@ import { loadingOption } from "../../ts/tools/Const";
 
 const props = defineProps(["option"]);
 
-echarts.use([
+use([
   TooltipComponent,
   GridComponent,
   LegendComponent,
