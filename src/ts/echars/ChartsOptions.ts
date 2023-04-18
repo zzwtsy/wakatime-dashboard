@@ -32,6 +32,10 @@ export default class ChartsOptions {
       legend: {
         type: "scroll",
         top: "7%",
+        textStyle: {
+          fontWeight: 'normal',
+          fontFamily: "'JetBrains Mono', monospace, sans-serif"
+        },
       },
       series: [
         {
@@ -128,6 +132,10 @@ export default class ChartsOptions {
       legend: {
         type: "scroll",
         top: "7%",
+        textStyle: {
+          fontWeight: 'normal',
+          fontFamily: "'JetBrains Mono', monospace, sans-serif"
+        },
       },
       yAxis: {
         type: "value",

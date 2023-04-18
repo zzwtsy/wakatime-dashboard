@@ -1,6 +1,10 @@
 import { reactive } from "vue";
 
-export const store = reactive({
+interface IStore {
+  [key: string]: any;
+}
+
+export const store: IStore = reactive({
   languagePieChartOption: {},
   operatingSystemsOption: {},
   machinesOption: {},

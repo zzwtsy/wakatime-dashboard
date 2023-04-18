@@ -11,8 +11,7 @@
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
-    "noEmit": true,
-    "types": ["element-plus/global"]
+    "noEmit": true
   },
   "include": [
     "src/store/*.ts",

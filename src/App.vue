@@ -12,14 +12,14 @@ import BodyVue from "./components/Body.vue";
 import HeaderVue from "./components/Header.vue";
 import Tools from "./ts/tools/Tools";
 import { onMounted } from "vue";
-import { getPieDataAndShow } from "./ts/service/GetPieDataAndShow";
+import { getChartsDataAndShow } from "./ts/service/GetChartsDataAndShow";
 import Select from "./components/Select.vue";
 import ShowName from "./components/ShowName.vue";
 
 onMounted(async () => {
   const gistId = Tools.checkGistId();
   if (gistId !== false) {
-    await getPieDataAndShow(gistId);
+    await getChartsDataAndShow(gistId);
   }
 });
 </script>
