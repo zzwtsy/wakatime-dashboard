@@ -33,8 +33,8 @@ export default class ChartsOptions {
         type: "scroll",
         top: "7%",
         textStyle: {
-          fontWeight: 'normal',
-          fontFamily: "'JetBrains Mono', monospace, sans-serif"
+          fontWeight: "normal",
+          fontFamily: "'JetBrains Mono', monospace, sans-serif",
         },
       },
       series: [
@@ -81,7 +81,14 @@ export default class ChartsOptions {
           color: "#516b91",
         },
       },
-      dataZoom: [{}],
+      dataZoom: [
+        {
+          type: "slider",
+          textStyle: {
+            color: "#516b91",
+          },
+        },
+      ],
       toolbox: {
         show: true,
         feature: {
@@ -133,8 +140,8 @@ export default class ChartsOptions {
         type: "scroll",
         top: "7%",
         textStyle: {
-          fontWeight: 'normal',
-          fontFamily: "'JetBrains Mono', monospace, sans-serif"
+          fontWeight: "normal",
+          fontFamily: "'JetBrains Mono', monospace, sans-serif",
         },
       },
       yAxis: {
