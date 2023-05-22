@@ -13,3 +13,7 @@
 ## 如何使用
 
 - 请前往 [wakatime-sync](https://github.com/superman66/wakatime-sync) 查看
+
+## 展示
+
+![展示](./image/22-5.jpeg)
