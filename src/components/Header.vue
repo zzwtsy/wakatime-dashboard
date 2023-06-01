@@ -23,7 +23,7 @@
         <input
           @keyup.enter="enterSearch($event)"
           type="text"
-          placeholder="Input Your Gist Id"
+          placeholder="Input Your Gist Id Or URL"
           class="w-full h-8 border-none outline-none bg-transparent text-center text-black dark:text-white"
         />
       </div>
@@ -37,6 +37,7 @@ import IconGithub from "./icons/IconGithub.vue";
 import ChangeTheme from "./ChangeTheme.vue";
 import { getChartsDataAndShow } from "../ts/service/GetChartsDataAndShow";
 import Tools from "../ts/tools/Tools";
+import { InputType } from "../ts/enum/InputType";
 
 /**
  * 根据用户输入的 Gist Id 搜索对应的 Gist，并解析 Gist 中的文章数据
@@ -46,15 +47,19 @@ const enterSearch = async (event: any) => {
   // 获取 input 里的 gistId
   let gistId = event.target.value.trim();
 
-  const checkGistId = Tools.checkGistId(gistId);
+  let url;
+  
+  if (Tools.isURL(gistId)) {
+    url = gistId;
+  } else {
+    const checkGistId = Tools.isGistId(gistId);
 
-  if (checkGistId == false) {
-    alert("请输入 Gist Id");
-    return;
+    if (checkGistId == false) {
+      alert("Please enter a valid Gist Id or URL");
+      return;
+    }
   }
 
-  gistId = checkGistId;
-
-  await getChartsDataAndShow(gistId);
+  await getChartsDataAndShow(url, InputType.GistId);
 };
 </script>

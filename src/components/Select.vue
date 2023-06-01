@@ -21,6 +21,7 @@ import { ref } from "vue";
 import Tools from "../ts/tools/Tools";
 import { getChartsDataAndShow } from "../ts/service/GetChartsDataAndShow";
 import { store } from "../store/Store";
+import { InputType } from "../ts/enum/InputType";
 
 const value = ref(7);
 const options = [
@@ -48,9 +49,17 @@ const options = [
 
 const change = async () => {
   store.selectValue = value.value;
-  const gistId = Tools.checkGistId();
+  const url = Tools.isURL();
+
+  if (url !== false) {
+    await getChartsDataAndShow(url, InputType.Url);
+    return;
+  }
+
+  const gistId = Tools.isGistId();
+
   if (gistId !== false) {
-    await getChartsDataAndShow(gistId);
+    await getChartsDataAndShow(gistId, InputType.GistId);
   }
 };
 </script>

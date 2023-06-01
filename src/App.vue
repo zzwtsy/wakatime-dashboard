@@ -15,11 +15,19 @@ import { onMounted } from "vue";
 import { getChartsDataAndShow } from "./ts/service/GetChartsDataAndShow";
 import Select from "./components/Select.vue";
 import ShowName from "./components/ShowName.vue";
+import { InputType } from "./ts/enum/InputType";
 
 onMounted(async () => {
-  const gistId = Tools.checkGistId();
+  const url = Tools.isURL();
+
+  if (url !== false) {
+    await getChartsDataAndShow(url, InputType.Url);
+    return;
+  }
+
+  const gistId = Tools.isGistId();
   if (gistId !== false) {
-    await getChartsDataAndShow(gistId);
+    await getChartsDataAndShow(gistId, InputType.GistId);
   }
 });
 </script>
