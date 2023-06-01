@@ -44,4 +44,27 @@ export default class Api {
   public static async getGistPostsContent(urls: string[]): Promise<{}> {
     return await Promise.all(urls.map((url) => AxiosUtil.get(url)));
   }
+
+  public static async getWakaTimeUrl(url: string): Promise<string[]> {
+    const result = await AxiosUtil.get<any>(url);
+    const parser = new DOMParser();
+    const htmlDoc = parser.parseFromString(result, "text/html");
+    const pElements = htmlDoc.getElementsByTagName("p");
+    const wakaTimeUrls: string[] = [];
+
+    for (let i = 0; i < pElements.length; i++) {
+      const tmp = pElements[i].textContent;
+      if (tmp == null) {
+        continue;
+      }
+
+      if (url.endsWith("/")) {
+        wakaTimeUrls.push(`${url}${tmp.trim()}`);
+      } else {
+        wakaTimeUrls.push(`${url}/${tmp.trim()}`);
+      }
+    }
+
+    return wakaTimeUrls;
+  }
 }

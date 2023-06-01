@@ -3,28 +3,50 @@ import Api from "../api/Api";
 import ChartsOptions from "../echars/ChartsOptions";
 import { DataType } from "../enum/DataType";
 import Parse from "../echars/Parse";
+import { InputType } from "../enum/InputType";
 
 /**
  * 解析 Gist 中的数据，并将数据更新到展示组件
- * @param gistId Gist Id
+ * @param urlOrGistId url Or GistId
  */
-export const getChartsDataAndShow = async (gistId: string) => {
+export const getChartsDataAndShow = async (
+  urlOrGistId: string,
+  type: InputType
+) => {
   // 开启 echarts loading 动画
   store.echartsLoading = true;
   try {
-    // 获取 Gist 中所有符合条件的文件的 raw url
-    const urls = await Api.getRawUrl(gistId).catch((err) => {
-      console.error("获取 RawURLs 失败：", err);
-      throw new Error("获取 RawURLs 失败");
-    });
-    const resList = await Api.getGistPostsContent(
-      urls.reverse().slice(0, store.selectValue)
-    ).catch((err) => {
-      console.error("获取 Gist 内容失败：", err);
-      throw new Error("获取 Gist 内容失败");
-    });
+    let resList;
+    if (type === InputType.GistId) {
+      // 获取 Gist 中所有符合条件的文件的 raw url
+      const urls = await Api.getRawUrl(urlOrGistId).catch((err) => {
+        console.error("获取 RawURLs 失败：", err);
+        throw new Error("获取 RawURLs 失败");
+      });
+
+      resList = await Api.getGistPostsContent(
+        urls.reverse().slice(0, store.selectValue)
+      ).catch((err) => {
+        console.error("获取 Gist 内容失败：", err);
+        throw new Error("获取 Gist 内容失败");
+      });
+    } else {
+      const urls = await Api.getWakaTimeUrl(urlOrGistId).catch((err) => {
+        console.error("获取 WakaTime 失败：", err);
+        throw new Error("获取 WakaTime 失败");
+      });
+
+      resList = await Api.getGistPostsContent(
+        urls.reverse().slice(0, store.selectValue)
+      ).catch((err) => {
+        console.error("获取 Gist 内容失败：", err);
+        throw new Error("获取 Gist 内容失败");
+      });
+    }
+
     // 获取柱状图数据
     const barData = Parse.parseBarData(resList);
+
     // 更新柱状图展示组件
     store.projectsOption = ChartsOptions.setBarChartsData(
       barData.xAxisData,
@@ -65,7 +87,7 @@ export const getChartsDataAndShow = async (gistId: string) => {
       type: "fetch data error",
       function: "getPieDataAndShow",
       api: "Api.getRawUrl or Api.getGistPostsContent or Parse.parsePieData",
-      gistId,
+      gistId: urlOrGistId,
       message: e.message,
       stack: e.stack,
     };
