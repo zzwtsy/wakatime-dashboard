@@ -44,22 +44,21 @@ import { InputType } from "../ts/enum/InputType";
  * @param event 事件对象
  */
 const enterSearch = async (event: any) => {
-  // 获取 input 里的 gistId
-  let gistId = event.target.value.trim();
+  const value = event.target.value.trim();
 
-  let url;
-  
-  if (Tools.isURL(gistId)) {
-    url = gistId;
-  } else {
-    const checkGistId = Tools.isGistId(gistId);
+  const url = Tools.isURL(value);
 
-    if (checkGistId == false) {
-      alert("Please enter a valid Gist Id or URL");
-      return;
-    }
+  if (url !== false) {
+    await getChartsDataAndShow(url, InputType.Url);
+    return;
   }
 
-  await getChartsDataAndShow(url, InputType.GistId);
+  const gistId = Tools.isGistId(value);
+  if (gistId !== false) {
+    await getChartsDataAndShow(gistId, InputType.GistId);
+    return;
+  }
+
+  alert("Please enter a valid Gist Id or URL");
 };
 </script>
