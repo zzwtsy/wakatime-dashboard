@@ -41,14 +41,13 @@ export default class ChartsOptions {
         {
           name: title,
           type: "pie",
-          radius: "80%",
-          center: ["50%", "52%"],
+          radius: [75, "80%"],
           top: "10%",
           avoidLabelOverlap: false,
           itemStyle: {
-            borderRadius: 5,
-            borderColor: "transparent",
+            borderRadius: 7,
             borderWidth: 2,
+            borderColor: "transparent",
           },
           label: {
             color: "#516b91",
@@ -92,6 +91,8 @@ export default class ChartsOptions {
       toolbox: {
         show: true,
         feature: {
+          magicType: { type: ["line"] },
+          restore: {},
           saveAsImage: {},
         },
       },
