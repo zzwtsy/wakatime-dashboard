@@ -18,7 +18,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import Tools from "../ts/tools/Tools";
+import * as Tools from "../ts/tools/Tools";
 import { getChartsDataAndShow } from "../ts/service/GetChartsDataAndShow";
 import { store } from "../store/Store";
 import { InputType } from "../ts/enum/InputType";

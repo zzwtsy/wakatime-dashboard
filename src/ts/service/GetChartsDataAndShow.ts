@@ -1,8 +1,8 @@
 import { store } from "../../store/Store";
-import Api from "../api/Api";
-import ChartsOptions from "../echars/ChartsOptions";
+import * as Api from "../api/Api";
+import * as ChartsOptions from "../echars/ChartsOptions";
 import { DataType } from "../enum/DataType";
-import Parse from "../echars/Parse";
+import * as Parse from "../echars/Parse";
 import { InputType } from "../enum/InputType";
 
 /**

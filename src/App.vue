@@ -10,7 +10,7 @@
 import FooterVue from "./components/Footer.vue";
 import BodyVue from "./components/Body.vue";
 import HeaderVue from "./components/Header.vue";
-import Tools from "./ts/tools/Tools";
+import * as Tools from "./ts/tools/Tools";
 import { onMounted } from "vue";
 import { getChartsDataAndShow } from "./ts/service/GetChartsDataAndShow";
 import Select from "./components/Select.vue";

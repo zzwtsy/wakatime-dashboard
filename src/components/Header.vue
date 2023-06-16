@@ -36,7 +36,7 @@
 import IconGithub from "./icons/IconGithub.vue";
 import ChangeTheme from "./ChangeTheme.vue";
 import { getChartsDataAndShow } from "../ts/service/GetChartsDataAndShow";
-import Tools from "../ts/tools/Tools";
+import * as Tools from "../ts/tools/Tools";
 import { InputType } from "../ts/enum/InputType";
 
 /**
