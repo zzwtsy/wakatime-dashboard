@@ -35,10 +35,15 @@ export async function parsePieData(
       }
     }
 
+    // 将 Map 转换为数组并根据 value 大小进行排序
+    const sortedData = Array.from(dataMapItem.entries()).sort(
+      ([nameA, valueA], [nameB, valueB]) => valueB - valueA
+    );
+
     // 将 Map 转换为 JSON 数组，并添加到总数据 Map 中
     dataMap.set(
       dataType,
-      Array.from(dataMapItem.entries()).map(([name, value]) => ({
+      sortedData.map(([name, value]) => ({
         name,
         value,
       }))
