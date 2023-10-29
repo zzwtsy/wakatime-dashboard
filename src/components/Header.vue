@@ -6,7 +6,7 @@
       <div class="hidden lg:flex items-center absolute left-0 ml-8">
         <a
           target="_blank"
-          href="https://github.com/zzwtsy/wakatime-dashboard-vue"
+          href="https://github.com/zzwtsy/wakatime-dashboard"
           class="font-medium text-[--text-color] dark:text-[--dark-text-color] hover:text-[--hover-text-color] dark:hover:text-[--dark-text-hover-color]"
         >
           <span class="flex flex-row justify-center items-center">
