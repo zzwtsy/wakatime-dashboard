@@ -71,7 +71,7 @@ export default function App() {
                   icon
                   onClick={() =>
                     window.open(
-                      "https://github.com/zzwtsy/react-demo",
+                      "https://github.com/zzwtsy/wakatime-dashboard",
                       "_blank"
                     )
                   }
