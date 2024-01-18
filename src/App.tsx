@@ -9,10 +9,11 @@ import {
   HolyGrail,
   Appbar,
   Btn,
-  ThemeToggle,
   Notifications,
   TextField,
+  Footer,
 } from "roku-ui";
+import { ThemeToggle } from "./components/ThemeToggle";
 
 export default function App() {
   const [gistIdOrUrl, setGistIdOrUrl] = useState("");
@@ -62,10 +63,11 @@ export default function App() {
               backgroundSize: "4px 4px",
             }}
             varient="blur"
-            title="WakaTime"
+            title="Wakatime Dashboard"
             tailing={
               <>
                 <Input handleInput={handleInput} />
+                <ThemeToggle />
                 <Btn
                   text
                   icon
@@ -78,12 +80,21 @@ export default function App() {
                 >
                   <GithubIcon />
                 </Btn>
-                <ThemeToggle text />
               </>
             }
           />
         }
         main={<Dashboard gistIdOrUrl={gistIdOrUrl} />}
+        footer={
+          <Footer border style={{ height: 50 }}>
+            <span style={{ margin: "0 auto" }}>
+              Thinks{" "}
+              <a href="https://wakatime.com" target="_blank">
+                WakaTime
+              </a>
+            </span>
+          </Footer>
+        }
       />
       <Notifications name="error" stack={false} />
     </>
