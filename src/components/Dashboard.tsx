@@ -140,8 +140,8 @@ async function fetchData(
     const fetchedData = await getWakaTimeBackupData(urls);
     return fetchedData;
   } catch (e: unknown) {
-    console.error("获取 WakaTime 备份数据失败", e);
-    throw new Error(`获取 WakaTime 备份数据失败: ${(e as Error).message}`);
+    console.error("Failed to retrieve WakaTime backup data", e);
+    throw new Error(`Failed to retrieve WakaTime backup data: ${(e as Error).message}`);
   }
 }
 
@@ -169,8 +169,8 @@ async function parseData(wakatimeDatas: WakatimeData[]) {
       operatingSystems: parsedData[4],
     };
   } catch (e: unknown) {
-    console.error("解析 WakaTime 备份数据失败", e);
-    throw new Error(`解析 WakaTime 备份数据失败: ${(e as Error).message}`);
+    console.error("Failed to parse WakaTime backup data", e);
+    throw new Error(`Failed to parse WakaTime backup dat.: ${(e as Error).message}`);
   }
 }
 

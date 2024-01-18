@@ -87,7 +87,7 @@ function getOption(
           <>
             <span>{params[0].name}</span>
             <br />
-            {tooltipItems.length === 0 ? "暂无数据" : tooltipItems}
+            {tooltipItems.length === 0 ? "There is nothing here" : tooltipItems}
           </>
         );
 
