@@ -88,7 +88,7 @@ export default function App() {
         footer={
           <Footer border style={{ height: 50 }}>
             <span style={{ margin: "0 auto" }}>
-              Thinks{" "}
+              Thanks{" "}
               <a href="https://wakatime.com" target="_blank">
                 WakaTime
               </a>
