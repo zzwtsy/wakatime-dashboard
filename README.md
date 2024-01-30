@@ -1,5 +1,11 @@
 # Wakatime Dashboard React
 
+## TODO
+
+- [ ] Project Time Proportion chart
+
+- [ ] Coding chart
+
 ## 功能
 
 - 支持 [wakatime-action-sync](https://github.com/zzwtsy/wakatime-action-sync) 形式保存的 wakatime 统计数据
